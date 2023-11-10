@@ -53,6 +53,8 @@ exports.pasta_delete = function (req, res) {
 exports.pasta_update_put = function (req, res) {
   res.send('NOT IMPLEMENTED: pasta update PUT' + req.params.id);
 };
+//get request for one pasta
+router.get('/pasta/:id', pasta_controller.pasta_detail);
 
 // for a specific Pasta.
 exports.pasta_detail = async function(req, res) {
