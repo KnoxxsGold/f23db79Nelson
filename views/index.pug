@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p This is a change to the text 
+
+  // Button triggering an action
+  button(type="button", class="btn btn-primary", onclick="goFaster()") Increase Speed
+
+  // Div to display the speed details
+  div#faster Increase the speed: MPH #{mph} with change #{change}.
+
+  //- Link to the endpoint created for search results
+  a(href='/pasta') View Pasta Search Results
+  
+  script.
+    function goFaster() {
+      let mph = 20;
+      let change = 1;
+
+      mph += change;
+      change++;
+
+      document.getElementById('faster').textContent = `Increase the speed: MPH ${mph} with change ${change}.`;
+    }
