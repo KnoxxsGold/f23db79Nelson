@@ -1,7 +1,14 @@
 var Pasta = require('../models/pasta');
-// List of all pastas
-exports.pasta_list = function(req, res) {
-res.send('NOT IMPLEMENTED: pasta list');
+//List of all pastas
+exports.pasta_list= async function(req, res){
+    try{
+        thePasta = await Pasta.find();
+        res.send(thePasta);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error"}:${err}}`);
+    }
 };
 // for a specific pasta.
 exports.pasta_detail = function(req, res) {
