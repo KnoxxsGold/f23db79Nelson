@@ -1,6 +1,6 @@
-// pasta_controller.js
-
 var Pasta = require('../models/pasta');
+const mongoose = require('mongoose');
+const { Types } = mongoose;
 
 // List of all pastas
 exports.pasta_list = async function (req, res) {
@@ -25,11 +25,29 @@ exports.pasta_view_all_Page = async function (req, res) {
     res.send(`{"error": ${err}}`);
   }
 };
+// specific pasta
+exports.pasta_detail = async function(req, res) {
+  console.log("detail", req.params.id);
 
-// for a specific pasta.
-exports.pasta_detail = function (req, res) {
-  res.send('NOT IMPLEMENTED: pasta detail: ' + req.params.id);
+  try {
+      const objectId = new Types.ObjectId(req.params.id); // Use 'new' to create ObjectId
+      console.log("objectId", objectId);
+
+      const result = await Pasta.findById(objectId);
+      console.log("result", result);
+
+      if (!result) {
+          res.status(404).json({ error: `Document with id ${req.params.id} not found` });
+          return;
+      }
+
+      res.json(result);
+  } catch (error) {
+      console.error("Error:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
 };
+
 
 // Handle pasta create on POST.
 exports.pasta_create_post = async function (req, res) {
@@ -53,17 +71,4 @@ exports.pasta_delete = function (req, res) {
 exports.pasta_update_put = function (req, res) {
   res.send('NOT IMPLEMENTED: pasta update PUT' + req.params.id);
 };
-//get request for one pasta
-router.get('/pasta/:id', pasta_controller.pasta_detail);
 
-// for a specific Pasta.
-exports.pasta_detail = async function(req, res) {
-    console.log("detail" + req.params.id)
-    try {
-    result = await Pasta.findById( req.params.id)
-    res.send(result)
-    } catch (error) {
-    res.status(500)
-    res.send(`{"error": document for id ${req.params.id} not found`);
-    }
-    };

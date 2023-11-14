@@ -1,6 +1,9 @@
 var express = require('express');
-const pasta_controlers= require('../controllers/pasta');
+const pasta_controlers = require('../controllers/pasta');
 var router = express.Router();
-/* GET pastas */
-router.get('/', pasta_controlers.pasta_view_all_Page );
+
+/* GET pasta detail */
+router.get('/:id', pasta_controlers.pasta_detail);
+
 module.exports = router;
+
