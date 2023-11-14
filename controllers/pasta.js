@@ -25,12 +25,13 @@ exports.pasta_view_all_Page = async function (req, res) {
     res.send(`{"error": ${err}}`);
   }
 };
+
 // specific pasta
 exports.pasta_detail = async function(req, res) {
   console.log("detail", req.params.id);
 
   try {
-      const objectId = new Types.ObjectId(req.params.id); // Use 'new' to create ObjectId
+      const objectId = new Types.ObjectId(req.params.id); 
       console.log("objectId", objectId);
 
       const result = await Pasta.findById(objectId);
@@ -63,12 +64,37 @@ exports.pasta_create_post = async function (req, res) {
   };
 
 // Handle pasta delete form on DELETE.
-exports.pasta_delete = function (req, res) {
-  res.send('NOT IMPLEMENTED: pasta delete DELETE ' + req.params.id);
+exports.pasta_delete = async function(req, res){
+  console.log("delete " +req.params.id)
+  try {
+    result = await Pasta.findByIdAndDelete(req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+  } catch (err){
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+  }
 };
 
 // Handle pasta update form on PUT.
-exports.pasta_update_put = function (req, res) {
-  res.send('NOT IMPLEMENTED: pasta update PUT' + req.params.id);
+exports.pasta_update_put = async function(req, res) {
+  console.log(`Update on id ${req.params.id} with body ${JSON.stringify(req.body)}`);
+
+  try {
+    let toUpdate = await Pasta.findById(req.params.id);
+
+    if (req.body.name) toUpdate.name = req.body.name;
+    if (req.body.weight) toUpdate.weight = req.body.weight;
+    if (req.body.price) toUpdate.price = req.body.price;
+
+    let result = await toUpdate.save();
+
+    console.log("Success " + result);
+    res.send(result);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+  }
 };
+
 

@@ -32,7 +32,7 @@ let instance3 = new
 Pasta({name:"fusili", weight:'750', price:7.99});
 instance3.save().then(doc=>{console.log("First object saved")}).catch(err=>{console.error(err)});
 }
-let reseed = true;
+let reseed = false;
 if (reseed) {recreateDB();}
 
 
