@@ -74,6 +74,10 @@ app.get('/board', (req, res) => {
   res.render('board', { title: 'Board Display', rows, cols });
 });
 
+app.get('/pastas/detail', (req, res) => {
+  res.render('pastadetail', {title: 'Pasta Detail'})
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

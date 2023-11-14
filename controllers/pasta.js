@@ -98,3 +98,22 @@ exports.pasta_update_put = async function(req, res) {
 };
 
 
+// Handle show one view with ID specified by query
+exports.pasta_view_one_Page = async function(req, res) {
+  console.log("single view for id " + req.query.id);
+
+  try {
+    const result = await Pasta.findById(req.query.id);
+
+    if (!result) {
+      res.status(404).json({ error: `Document with id ${req.query.id} not found` });
+      return;
+    }
+
+    res.render('pastadetail', { title: 'Pasta Detail', toShow: result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+

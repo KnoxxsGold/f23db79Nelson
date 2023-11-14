@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.pastaAttr {
+  background-color: aqua;
+  width: 120px;
+}
