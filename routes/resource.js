@@ -24,4 +24,15 @@ router.get('/pastas/:id', pasta_controller.pasta_detail);
 
 // GET request for list of all pasta items.
 router.get('/pastas', pasta_controller.pasta_list);
+
+/* GET detail pasta page */
+router.get('/detail', pasta_controller.pasta_view_one_Page);
+
+/* GET create pasta page */
+router.get('/create', pasta_controller.pasta_create_Page);
+
+/*GET create update page*/
+router.get('/update', pasta_controller.pasta_update_Page);
+
+
 module.exports = router;

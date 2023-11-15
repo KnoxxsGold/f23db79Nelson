@@ -45,6 +45,7 @@ var chooseRouter = require('./routes/choose');
 var resourceRouter = require('./routes/resource');
 
 
+
 const { start } = require('repl');
 
 var app = express();
@@ -66,6 +67,8 @@ app.use('/pastas', pastaRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
 app.use('/resource', resourceRouter);
+app.use('/pasta', pastaRouter);
+
 
 
 app.get('/board', (req, res) => {

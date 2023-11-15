@@ -76,6 +76,18 @@ exports.pasta_create_post = async function (req, res) {
     }
   };
 
+  exports.pasta_update_put = async function(req, res){
+    console.log("update view for item " +req.query.id)
+    try{
+      let result = await Pasta.findById(req.query.id)
+      res.render('costumeupdate', { title: 'Pasta Update', toShow: result });
+    }
+    catch(err){
+      res.status(500)
+      res.send(`{'error': '${err}}'`)
+    }
+  };
+
 // Handle pasta delete form on DELETE.
 exports.pasta_delete = async function(req, res){
   console.log("delete " +req.params.id)
