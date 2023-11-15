@@ -27,10 +27,10 @@ Pasta({name:"spaghetti", weight:'500g', price:5.99});
 instance1.save().then(doc=>{console.log("First object saved")}).catch(err=>{console.error(err)});
 let instance2 = new
 Pasta({name:"rotini", weight:'400', price:6.99});
-instance2.save().then(doc=>{console.log("First object saved")}).catch(err=>{console.error(err)});
+instance2.save().then(doc=>{console.log("Second object saved")}).catch(err=>{console.error(err)});
 let instance3 = new
 Pasta({name:"fusili", weight:'750', price:7.99});
-instance3.save().then(doc=>{console.log("First object saved")}).catch(err=>{console.error(err)});
+instance3.save().then(doc=>{console.log("Third object saved")}).catch(err=>{console.error(err)});
 }
 let reseed = false;
 if (reseed) {recreateDB();}

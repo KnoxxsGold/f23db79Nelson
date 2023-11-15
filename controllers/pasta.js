@@ -19,7 +19,7 @@ exports.pasta_list = async function (req, res) {
 exports.pasta_view_all_Page = async function (req, res) {
   try {
     const thePastas = await Pasta.find();
-    res.render('pasta', { title: 'Pasta Search Results', pastaItems: thePastas });
+    res.render('pasta', { title: 'Pasta Search Results', results: thePastas });
   } catch (err) {
     res.status(500);
     res.send(`{"error": ${err}}`);
@@ -98,16 +98,18 @@ exports.pasta_update_put = async function(req, res) {
 };
 
 
-// Handle show one view with ID specified by query
+// Handle a show one view with id specified by query
 exports.pasta_view_one_Page = async function(req, res) {
-  console.log("single view for id " + req.query.id);
-
-  try {
-    result = await Pasta.findById(req.query.id);
-    res.render('pastadetail', { title: 'Pasta Detail', toShow: result });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+  console.log("single view for id " + req.query.id)
+  try{
+    result = await Pasta.findById( req.query.id)
+    res.render('pastadetail',
+    { title: 'Pasta Detail', toShow: result });
+    }
+  catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+  };
 
 
