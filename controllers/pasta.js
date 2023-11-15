@@ -19,7 +19,7 @@ exports.pasta_list = async function (req, res) {
 exports.pasta_view_all_Page = async function (req, res) {
   try {
     const thePastas = await Pasta.find();
-    res.render('pasta', { title: 'Pasta Search Results', results: thePastas });
+    res.render('pasta', { title: 'Pasta Search Results', pastaItems: thePastas });
   } catch (err) {
     res.status(500);
     res.send(`{"error": ${err}}`);

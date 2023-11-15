@@ -4,19 +4,19 @@ block content
     h1 = title 
 
     - let pastaid = toShow._id 
-    - let name = toShow.name 
-    - let weight = toShow.weight 
-    - let price = toShow.price 
+    - let name = toShow.pastaname 
+    - let weight = toShow.pastaweight 
+    - let price = toShow.pastaprice 
     div 
         div.row 
             div(class='pastaAttr mr-3') Pasta ID is: 
             div #{pastaid} 
         div.row
             div(class='pastaAttr mr-3') Pasta Name is: 
-            div #{name}
+            div #{pastaname}
         div.row
             div(class='pastaAttr mr-3') Pasta Weight is: 
-            div #{weight}
+            div #{pastaweight}
         div.row
             div(class='pastaAttr mr-3') Pasta Price is: 
-            div #{price}
+            div #{pastaprice}
