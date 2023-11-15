@@ -11,5 +11,9 @@ router.delete('/:id', pasta_controlers.pasta_delete);
 /* GET detail pasta page */
 router.get('/detail', pasta_controlers.pasta_view_one_Page);
 
+/* GET create pasta page */
+router.get('/create', pasta_controlers.pasta_create_Page);
+
+
 module.exports = router;
 
