@@ -28,17 +28,17 @@ exports.pasta_view_all_Page = async function (req, res) {
 
 // specific pasta
 exports.pasta_detail = async function(req, res) {
-  console.log("detail", req.params.id);
+  console.log("detail", req.query.id); 
 
   try {
-      const objectId = new Types.ObjectId(req.params.id); 
+      const objectId = new Types.ObjectId(req.query.id); 
       console.log("objectId", objectId);
 
       const result = await Pasta.findById(objectId);
       console.log("result", result);
 
       if (!result) {
-          res.status(404).json({ error: `Document with id ${req.params.id} not found` });
+          res.status(404).json({ error: `Document with id ${req.query.id} not found` });
           return;
       }
 
@@ -48,6 +48,7 @@ exports.pasta_detail = async function(req, res) {
       res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 
 
 // Handle pasta create on POST.
